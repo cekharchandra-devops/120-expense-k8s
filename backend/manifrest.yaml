@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: db-config
+  namespace: expense
+  labels:
+    project: expense
+    app: backend
+    tier: app
+data:
+  DB_HOST: "mysql"
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,6 +36,9 @@ spec:
       containers:
         - name: backend
           image: backend:v11
+          envFrom:
+            - configMapRef:
+                name: db-config
 ---
 apiVersion: v1
 kind: Service
