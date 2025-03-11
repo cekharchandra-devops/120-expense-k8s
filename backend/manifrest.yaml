@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: expense
+  labels:
+    project: expense
+    app: backend
+    tier: app
+spec:
+  replicas: 3
+  matchLabels:
+    project: expense
+    app: backend
+    tier: app
+  template:
+    metadata:
+      labels:
+        project: expense
+        app: backend
+        tier: app
+    spec:
+      containers:
+        - name: backend
+          image: backend:v11
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: expense
+  labels:
+    project: expense
+    app: backend
+    tier: app
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    project: expense
+    app: backend
+    tier: app
