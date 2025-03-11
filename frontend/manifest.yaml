@@ -24,7 +24,9 @@ spec:
       containers:
         - name: frontend
           image: cekharch/frontend:v11
-          containerPort: 8080
+          ports:
+            - containerPort: 8080
+              protocol: TCP
           # env:
           #   - name: BACKEND_URL
           #     value: "http://backend:8080"
