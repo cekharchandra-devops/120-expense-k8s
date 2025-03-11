@@ -24,6 +24,7 @@ spec:
       containers:
         - name: frontend
           image: cekharch/frontend:v11
+          containerPort: 8080
           # env:
           #   - name: BACKEND_URL
           #     value: "http://backend:8080"
@@ -41,7 +42,7 @@ spec:
   type: LoadBalancer
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 8080
   selector:
     app: frontend
     tier: frontend
