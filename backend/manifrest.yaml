@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: backend:v11
+          image: cekharch/backend:v11
           envFrom:
             - configMapRef:
                 name: db-config
